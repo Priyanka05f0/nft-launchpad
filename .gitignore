@@ -1,0 +1,20 @@
+# dependencies
+node_modules/
+package-lock.json
+
+# env files
+.env
+.env.local
+
+# hardhat
+contracts/node_modules/
+contracts/artifacts/
+contracts/cache/
+
+# next.js
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+
+# logs
+*.log

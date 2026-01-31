@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  hardhat-node:
+    build:
+      context: .
+      target: contracts
+    ports:
+      - "8545:8545"
+
+  frontend:
+    build:
+      context: .
+      target: frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_RPC_URL=http://hardhat-node:8545
+    depends_on:
+      - hardhat-node

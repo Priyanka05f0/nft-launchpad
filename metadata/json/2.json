@@ -1,0 +1,15 @@
+{
+  "name": "My NFT #2",
+  "description": "A unique generative NFT",
+  "image": "ipfs://bafybeiekkcv2wh3lbbnboqiks6jg4w6vjzmpczyklwgivjdkguenocxdo4/2.png",
+  "attributes": [
+    {
+      "trait_type": "Background",
+      "value": "Red"
+    },
+    {
+      "trait_type": "Eyes",
+      "value": "Normal"
+    }
+  ]
+}
