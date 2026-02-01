@@ -150,8 +150,6 @@ http://localhost:3000
 
 ![MetaMask Mint Confirmed](screenshots/04_metamask_mint_confirmed.png)
 
-![Mint Success UI](screenshots/05_mint_success_ui.png)
-
 ---
 
 ## Conclusion
