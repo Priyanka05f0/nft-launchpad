@@ -75,166 +75,90 @@ Ensure the following are installed:
 - MetaMask browser extension
 - Git
 
----
-
-## 5. Environment Variable Setup
-
-### 5.1 Create .env file
-Inside the contracts/ folder, create a file named .env.
-SEPOLIA_RPC_URL=https://eth-sepolia.g.alchemy.com/v2/YOUR_API_KEY
-PRIVATE_KEY=YOUR_METAMASK_PRIVATE_KEY
-
-Explanation:
-
-SEPOLIA_RPC_URL: RPC endpoint from Alchemy/Infura
-
-PRIVATE_KEY: MetaMask test wallet private key (Sepolia only)
-
-⚠️ Important
-- Use a test wallet
-- Never use a mainnet wallet
-- .env is excluded via .gitignore
 
 ---
 
-## 6. Smart Contract Setup
+## Smart Contract Details
 
-### 6.1 Install dependencies
+- Contract Name: MyNFT
+- Standard: ERC-721
+- Network: Sepolia Testnet
+- Features:
+   - Public minting
+   - Token counter to track minted NFTs
+   - Metadata support using base URI
+
+---
+
+## 1.Install Dependencies (Contracts)
 ```bash
 cd contracts
 npm install
 ```
-Expected result:
-- Node modules installed successfully
-- No fatal errors
 
-### 6.2 Compile smart contracts
+## 2.Configure Environment Variables
+
+Create a .env file inside the contracts folder:
+```env
+SEPOLIA_RPC_URL=your_sepolia_rpc_url
+PRIVATE_KEY=your_wallet_private_key
+```
+Never share your private key publicly.
+
+## 3.Compile the Smart Contract
 ```bash
 npx hardhat compile
 ```
-Expected result:
-- Compiled X Solidity files successfully
-- This confirms the Solidity code is valid.
-
----
-
-
-## 7. Step 5 – Testing (MANDATORY TASK)
-### 7.1 Run unit tests
-```bash
-npx hardhat test
-```
-Tests Covered:
-- Contract deployment
-- NFT minting logic
-- Ownership assignment
-- Revert when accessing non-existent token
-
-Expected output example:
-```pgsql
-- MyNFT Contract
-✔ Should deploy with correct name and symbol
-✔ Should mint NFT successfully
-✔ Should assign NFT to minter
-✔ Should fail if token does not exist
-```
-
-This fulfills “Write comprehensive unit tests” requirement.
-
-## 8. Step 5 – Deployment to Sepolia Testnet
-### 8.1 Deploy contract
+## 4.Deploy Contract to Sepolia
 ```bash
 npx hardhat run scripts/deploy.js --network sepolia
 ```
-
-Expected output:
+output example:
 ```
-Deploying contract with account: 0xF89aC0E436eAAbCEE61b80Ed5f6f303C5d630850
-MyNFT deployed to: 0xA3694D198A85C056940c8c68dD89208e1D9F0CbF
+MyNFT deployed to: 0xa275D6502924733026ed81d3bC9742c8E76b1B18
 ```
+Save this contract address for frontend use.
 
-## 8.2 Verify on Etherscan
-
-Open in browser:
-```
-https://sepolia.etherscan.io/address/0xE1Bf92fec305a988B3684E2D3dc59b4Da54525F2
-```
-
-Evaluator can verify:
-- Contract creator
-- Deployment transaction
-- Network = Sepolia
- This fulfills “Deploy to a public testnet like Sepolia”.
-
----
-
-## 9. Frontend Setup (Step 4)
-### 9.1 Install frontend dependencies
+## 5.Start the Frontend
 ```bash
 cd ../frontend
 npm install
-```
-
-### 9.2 Run frontend locally
-```bash
 npm run dev
 ```
 Open in browser:
 ```
 http://localhost:3000
 ```
-(or 3001 if port 3000 is busy)
+
+## To Test the Application
+
+1. Open http://localhost:3000
+2. Click Connect Wallet
+3. Ensure MetaMask is set to Sepolia Testnet
+4. Click Mint NFT
+5. Confirm transaction in MetaMask
+6. Mint count updates automatically
+7. Transaction can be viewed on Sepolia Etherscan
+
+## Screenshots
+
+![Contract Deployment](screenshots/01_contract_deployment.png)
+
+![Etherscan Contract Address](screenshots/02_etherscan_contract_address.png)
+
+![Frontend Home](screenshots/03_frontend_home.png)
+
+![MetaMask Mint Confirmed](screenshots/04_metamask_mint_confirmed.png)
+
+![Mint Success UI](screenshots/05_mint_success_ui.png)
 
 ---
 
-## 10. Step 4 – Feature Verification (IMPORTANT)
-### Step 4.2 – Sale Status Display
+## Conclusion
 
-UI shows:
-```
-Sale Status: Public Sale
-```
-
-### Step 4.3 – Mint Count Display
-
-UI shows:
-```
-NFTs Minted: X
-```
-- Count updates after every mint
-- Value is read from blockchain
-
-### Step 4.4 – Minting UI
-
-- “Connect Wallet” button
-- “Mint NFT” button
-- MetaMask transaction popup appears
-
-## Step 4.5 – Transaction Feedback
-
-UI displays:
-- Transaction pending...
-- Mint successful 
-- or Transaction failed 
-
----
-
-## 11. Gas Optimization Techniques Used
-
-- Avoided ERC721Enumerable
-- Used simple tokenCounter instead of arrays
-- Minimal storage writes
-- No unnecessary state variables
-- Lightweight mint logic
-
----
-
-## 12. Security Considerations
-
-- Ownership handled via OpenZeppelin Ownable
-- No payable external calls
-- No re-entrancy risks
-- Safe minting via _safeMint
-- Proper input validation
+- NFT smart contract created and deployed on Sepolia
+- Frontend connected with MetaMask
+- NFTs successfully minted from the UI
+- Transactions verified on MetaMask and Etherscan
 
 ---
