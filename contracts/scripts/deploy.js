@@ -1,17 +1,13 @@
 const hre = require("hardhat");
 
 async function main() {
-  const [deployer] = await hre.ethers.getSigners();
-  console.log("Deploying contract with account:", deployer.address);
-
   const MyNFT = await hre.ethers.getContractFactory("MyNFT");
 
-  const nft = await MyNFT.deploy("ipfs://YOUR_CID_HERE/");
+  const myNFT = await MyNFT.deploy();
 
-  // ✅ ethers v5
-  await nft.deployed();
+  await myNFT.deployed();
 
-  console.log("MyNFT deployed to:", nft.address);
+  console.log("MyNFT deployed to:", myNFT.address);
 }
 
 main().catch((error) => {

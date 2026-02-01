@@ -1,36 +1,126 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# NFT Launchpad – Sepolia Testnet
+## Project Overview
 
-## Getting Started
+This project is a basic NFT Launchpad that allows users to:
+- Connect their MetaMask wallet
+- Mint NFTs on the Sepolia Ethereum Test Network
+- View live mint count directly from the blockchain
 
-First, run the development server:
+The project uses Solidity smart contracts, Hardhat, Ethers.js, and a Next.js frontend.
 
+---
+
+## Tech Stack
+
+- Solidity – Smart contract development
+- Hardhat – Contract compilation & deployment
+- Ethereum Sepolia Testnet – Blockchain network
+- Ethers.js – Blockchain interaction
+- Next.js (React) – Frontend UI
+- MetaMask – Wallet integration
+
+---
+
+## Project Structure
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+nft-launchpad/
+│
+├── contracts/
+│   ├── contracts/MyNFT.sol
+│   ├── scripts/deploy.js
+│   ├── hardhat.config.js
+│   └── .env
+│
+├── frontend/
+│   ├── app/page.js
+│   └── package.json
+│
+└── README.md
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Smart Contract Details
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Contract Name: MyNFT
+- Standard: ERC-721
+- Network: Sepolia Testnet
+- Features:
+   - Public minting
+   - Token counter to track minted NFTs
+   - Metadata support using base URI
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 1.Install Dependencies (Contracts)
+```bash
+cd contracts
+npm install
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 2.Configure Environment Variables
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Create a .env file inside the contracts folder:
+```env
+SEPOLIA_RPC_URL=your_sepolia_rpc_url
+PRIVATE_KEY=your_wallet_private_key
+```
+Never share your private key publicly.
 
-## Deploy on Vercel
+## 3.Compile the Smart Contract
+```bash
+npx hardhat compile
+```
+## 4.Deploy Contract to Sepolia
+```bash
+npx hardhat run scripts/deploy.js --network sepolia
+```
+output example:
+```
+MyNFT deployed to: 0xa275D6502924733026ed81d3bC9742c8E76b1B18
+```
+Save this contract address for frontend use.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 5.Start the Frontend
+```bash
+cd ../frontend
+npm install
+npm run dev
+```
+Open in browser:
+```
+http://localhost:3000
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## To Test the Application
+
+1. Open http://localhost:3000
+2. Click Connect Wallet
+3. Ensure MetaMask is set to Sepolia Testnet
+4. Click Mint NFT
+5. Confirm transaction in MetaMask
+6. Mint count updates automatically
+7. Transaction can be viewed on Sepolia Etherscan
+
+## Screenshots
+
+![Contract Deployment](screenshots/01_contract_deployment.png)
+
+![Etherscan Contract Address](screenshots/02_etherscan_contract_address.png)
+
+![Frontend Home](screenshots/03_frontend_home.png)
+
+![MetaMask Mint Confirmed](screenshots/04_metamask_mint_confirmed.png)
+
+![Mint Success UI](screenshots/05_mint_success_ui.png)
+
+---
+
+## Conclusion
+
+- NFT smart contract created and deployed on Sepolia
+- Frontend connected with MetaMask
+- NFTs successfully minted from the UI
+- Transactions verified on MetaMask and Etherscan
+
+---
